@@ -15,34 +15,22 @@ public class ProjectTaskController {
     @Autowired
     private ProjectTaskService service;
 
-/*
-    @GetMapping
-    public List<Course> findAll(){
-        return service.findAll();
-    }
-
-    @PostMapping
-    public Course create(@RequestBody Course course){
-        return service.create(course);
-    }
-*/
-
-    @GetMapping
-    public List<ProjectTask> findAllByProjectIdentifier(String projectIdentifier){
+    @GetMapping("/project/{projectIdentifier}")
+    public List<ProjectTask> findAllByProjectIdentifier(@PathVariable("projectIdentifier") String projectIdentifier){
         return service.findByProjectId(projectIdentifier);
     }
 
-    @GetMapping
-    public Integer getProjectHours(String projectIdentifier) {
+    @GetMapping("/hours/project/{projectIdentifier}")
+    public Integer getProjectHours(@PathVariable("projectIdentifier") String projectIdentifier) {
         return service.getProjectHours(projectIdentifier);
     }
 
-    @GetMapping
-    public Integer getProjectHoursByStatus(String projectIdentifier, EStatusTypes status) {
+    @GetMapping("/hours/project/{projectIdentifier}/{status}")
+    public Integer getProjectHoursByStatus(@PathVariable("projectIdentifier") String projectIdentifier,@PathVariable("status") EStatusTypes status) {
         return service.getProjectHoursByStatus(projectIdentifier, status);
     }
-    @DeleteMapping
-    public void removeTask(Long taskId, String projectIdentifier) {
+    @DeleteMapping("/{taskId}/{projectIdentifier}")
+    public void removeTask(@PathVariable("taskId") Long taskId,@PathVariable("projectIdentifier") String projectIdentifier) {
         service.removeTask(taskId, projectIdentifier);
     }
 
