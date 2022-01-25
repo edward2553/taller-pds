@@ -1,5 +1,6 @@
 package com.taller.pds.tallerpds.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,17 +17,14 @@ public class Backlog extends EntityBase {
     @Column(name = "project_identifier")
     private String projectIdentifier;
 
-    @Column(name = "project")
-    @JsonManagedReference
-    @OneToOne(mappedBy = "backlog", cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "project")
+    @JsonBackReference
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "project_id")
     private Project project;
 
-    @Column(name = "project_task")
     @JsonManagedReference
     @OneToMany(mappedBy = "backlog", cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "projectTask")
-    private List<ProjectTask> projectTask;
+    private List<ProjectTask> projectTasks;
 
     @Override
     public boolean equals(Object o) {

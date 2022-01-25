@@ -1,6 +1,6 @@
 package com.taller.pds.tallerpds.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,8 +24,7 @@ public class Project extends EntityBase {
     @Column(name = "end_date")
     private Date endDate;
 
-    @Column(name = "backlog")
-    @JsonBackReference
+    @JsonManagedReference
     @OneToOne(mappedBy = "project", cascade = CascadeType.PERSIST)
     @JoinColumn(name = "backlog")
     private Backlog backlog;

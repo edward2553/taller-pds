@@ -6,6 +6,7 @@ import com.taller.pds.tallerpds.types.EStatusTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,22 +17,23 @@ public class ProjectTaskServiceImp implements ProjectTaskService{
 
     @Override
     public List<ProjectTask> findByProjectId(String projectIdentifier) {
-        return repository.findByProjectId(projectIdentifier);
+        List<ProjectTask> aTemp = new ArrayList<>();
+        return aTemp;
     }
 
     @Override
-    public Integer getProjectHours(String projectId) {
-        return repository.getProjectHours(projectId);
+    public Integer getProjectHours(String projectIdentifier) {
+        return 1;
     }
 
     @Override
-    public Integer getProjectHoursByStatus(String projectId, EStatusTypes status) {
-        return repository.getProjectHoursByStatus(projectId, status);
+    public Integer getProjectHoursByStatus(String projectIdentifier, EStatusTypes status) {
+        return 1;
     }
 
     @Override
-    public void removeTask(Long taskId, String projectId) {
-        repository.removeTask(taskId, projectId);
+    public void removeTask(Long taskId, String projectIdentifier){
+        assert true;
     }
 
     @Override

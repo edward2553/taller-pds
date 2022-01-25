@@ -9,9 +9,5 @@ import java.util.List;
 
 @Repository
 public interface ProjectTaskRepository extends JpaRepository<ProjectTask, Long> {
-    List<ProjectTask> findByProjectId(String projectIdentifier);
-    Integer getProjectHours(String projectId);
-    Integer getProjectHoursByStatus(String projectId, EStatusTypes status);
-    void removeTask(Long taskId,String projectId);
-    ProjectTask create(ProjectTask task);
+
 }

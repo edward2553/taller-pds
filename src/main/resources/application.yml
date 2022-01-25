@@ -1,13 +1,13 @@
 server:
-  port: $PORT
+  port: 9050
   servlet:
     context-path: /poli/v1
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://ec2-3-216-113-109.compute-1.amazonaws.com:5432/d63eiq323mcahk
-    username: bmemyjjhugcpsz
-    password: d57a44a6970934bab711a9aa2c8913df242779f8c3332d17df6ca6fb341b9593
+    url: jdbc:postgresql://ec2-23-21-25-48.compute-1.amazonaws.com:5432/d2evo4vgdfsuhf
+    username: tkrssrofuoqudv
+    password: ef053c4eab99510a2ce3c1b40e7945316380fc8f6117e9b91783c131c72edd80
     platform: postgres
   jpa:
     hibernate:

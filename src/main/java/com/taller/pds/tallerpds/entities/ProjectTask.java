@@ -30,13 +30,12 @@ public class ProjectTask extends EntityBase{
     private Date startDate;
     @Column(name = "end_date")
     private Date endDate;
-    @Column(name = "project_identifier")
+    @Column(name = "project_identifier", updatable = false)
     private String projectIdentifier;
 
-    @Column(name = "backlog")
     @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "backlog")
+    @JoinColumn(name = "backlog_id")
     private Backlog backlog;
 
     @Override
