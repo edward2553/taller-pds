@@ -15,6 +15,11 @@ public class ProjectTaskController {
     @Autowired
     private ProjectTaskService service;
 
+    @GetMapping
+    public List<ProjectTask> findAll(){
+        return service.findAll();
+    }
+
     @GetMapping("/project/{projectIdentifier}")
     public List<ProjectTask> findAllByProjectIdentifier(@PathVariable("projectIdentifier") String projectIdentifier){
         return service.findByProjectId(projectIdentifier);

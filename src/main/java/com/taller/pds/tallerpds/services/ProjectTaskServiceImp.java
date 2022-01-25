@@ -16,6 +16,11 @@ public class ProjectTaskServiceImp implements ProjectTaskService{
     private ProjectTaskRepository repository;
 
     @Override
+    public List<ProjectTask> findAll() {
+        return repository.findAll();
+    }
+
+    @Override
     public List<ProjectTask> findByProjectId(String projectIdentifier) {
         List<ProjectTask> aTemp = new ArrayList<>();
         return aTemp;
