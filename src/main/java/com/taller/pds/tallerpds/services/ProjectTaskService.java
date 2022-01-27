@@ -7,11 +7,12 @@ import java.util.List;
 
 public interface ProjectTaskService {
 
+    List<Project> findAllProjects();
     List<ProjectTask> findAll();
     List<ProjectTask> findByProjectId(String projectIdentifier);
-    Integer getProjectHours(String projectIdentifier);
-    Integer getProjectHoursByStatus(String projectIdentifier, EStatusTypes status);
-    void removeTask(Long taskId,String projectIdentifier);
+    Double getProjectHours(String projectIdentifier);
+    Double getProjectHoursByStatus(String projectIdentifier, EStatusTypes status);
+    ProjectTask removeTask(Long taskId,String projectIdentifier);
     ProjectTask create(ProjectTask task);
 
 }

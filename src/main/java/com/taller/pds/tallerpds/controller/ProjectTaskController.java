@@ -26,17 +26,17 @@ public class ProjectTaskController {
     }
 
     @GetMapping("/hours/project/{projectIdentifier}")
-    public Integer getProjectHours(@PathVariable("projectIdentifier") String projectIdentifier) {
+    public Double getProjectHours(@PathVariable("projectIdentifier") String projectIdentifier) {
         return service.getProjectHours(projectIdentifier);
     }
 
     @GetMapping("/hours/project/{projectIdentifier}/{status}")
-    public Integer getProjectHoursByStatus(@PathVariable("projectIdentifier") String projectIdentifier,@PathVariable("status") EStatusTypes status) {
+    public Double getProjectHoursByStatus(@PathVariable("projectIdentifier") String projectIdentifier,@PathVariable("status") EStatusTypes status) {
         return service.getProjectHoursByStatus(projectIdentifier, status);
     }
     @DeleteMapping("/{taskId}/{projectIdentifier}")
-    public void removeTask(@PathVariable("taskId") Long taskId,@PathVariable("projectIdentifier") String projectIdentifier) {
-        service.removeTask(taskId, projectIdentifier);
+    public ProjectTask removeTask(@PathVariable("taskId") Long taskId,@PathVariable("projectIdentifier") String projectIdentifier) {
+        return service.removeTask(taskId, projectIdentifier);
     }
 
     @PostMapping
