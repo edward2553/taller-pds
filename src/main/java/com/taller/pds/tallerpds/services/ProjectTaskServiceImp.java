@@ -1,6 +1,7 @@
 package com.taller.pds.tallerpds.services;
 
 import com.taller.pds.tallerpds.entities.ProjectTask;
+import com.taller.pds.tallerpds.exceptions.BadRequestException;
 import com.taller.pds.tallerpds.repository.ProjectTaskRepository;
 import com.taller.pds.tallerpds.types.EStatusTypes;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,18 @@ public class ProjectTaskServiceImp implements ProjectTaskService{
 
     @Override
     public ProjectTask create(ProjectTask task) {
+        if (task.getName() == "" || task.getName() == null) {
+            throw new BadRequestException();
+        }
+        if (task.getSummary() == "" || task.getSummary() == null) {
+            throw new BadRequestException();
+        }
+        if (task.getPriority() < 1 || task.getPriority() > 5) {
+            throw new BadRequestException();
+        }
+        if (task.getHours() < 1 || task.getHours() > 8) {
+            throw new BadRequestException();
+        }
         return repository.save(task);
     }
 }
