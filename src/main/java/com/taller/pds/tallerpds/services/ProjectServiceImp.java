@@ -1,6 +1,7 @@
 package com.taller.pds.tallerpds.services;
 
 import com.taller.pds.tallerpds.entities.Project;
+import com.taller.pds.tallerpds.exceptions.BadRequestException;
 import com.taller.pds.tallerpds.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,5 @@ public class ProjectServiceImp implements ProjectService{
     }
 
     @Override
-    public Project create(Project project) {
-        return repository.save(project);
-    }
+    public Project create(Project project) {return repository.save(project);}
 }

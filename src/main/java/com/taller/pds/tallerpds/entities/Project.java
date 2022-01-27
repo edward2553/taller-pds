@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Getter
@@ -13,14 +16,24 @@ import java.util.Date;
 @Table(name = "Project")
 public class Project extends EntityBase {
 
-    @Column(name = "project_name")
+    @NotNull
+    @Column(name = "project_name", unique = true)
+    @NotBlank(message = "El nombre del proyecto no debe de estar en blanco")
     private String projectName;
-    @Column(name = "project_identifier")
+
+    @NotNull
+    @Column(name = "project_identifier", unique = true, updatable = false)
+    @NotBlank(message = "El identificador del proyecto no debe de estar en blanco")
+    @Size(min = 5, max = 7, message = "El identificador del proyecto debe tener minimo 5 y máximo 7 caracteres")
     private String projectIdentifier;
+
     @Column(name = "description")
+    @NotBlank(message = "La descripción del proyecto no debe de estar en blanco")
     private String description;
+
     @Column(name = "start_date")
     private Date startDate;
+
     @Column(name = "end_date")
     private Date endDate;
 
