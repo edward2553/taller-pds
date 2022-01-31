@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.taller.pds.tallerpds.types.EStatusTypes;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -22,7 +23,7 @@ public class ProjectTask extends EntityBase{
     private String name;
 
     @Column(name = "summary")
-    @NotBlank(message = "El resumen no debe de etar en blanco")
+    @NotBlank(message = "El resumen no debe de estar en blanco")
     private String summary;
 
     @Column(name = "acceptance_criteria")
@@ -33,12 +34,12 @@ public class ProjectTask extends EntityBase{
     private EStatusTypes status;
 
     @Column(name = "priority")
-    @Size(min = 1, max = 5, message = "la prioridad debe tener estar en un rango de 1 a 5")
+    @Range(min = 1, max = 5, message = "la prioridad debe tener estar en un rango de 1 a 5")
     private Integer priority;
 
     @Column(name = "hours")
     @Min(value = 0L, message = "El valor debe de ser positivo")
-    @Size(min = 1, max = 8, message = "Las horas deben de estar en un rango de 1 a 8 hrs")
+    @Range(min = 1, max = 8, message = "Las horas deben de estar en un rango de 1 a 8 hrs")
     private Double hours;
 
     @Column(name = "start_date")

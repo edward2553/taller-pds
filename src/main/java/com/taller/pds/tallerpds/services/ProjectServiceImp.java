@@ -20,19 +20,5 @@ public class ProjectServiceImp implements ProjectService{
     }
 
     @Override
-    public Project create(Project project) {
-        if (project.getProjectName() == "" || project.getProjectName() == null) {
-            throw new  BadRequestException();
-        }
-        if (project.getProjectIdentifier() == "" || project.getProjectIdentifier() == null) {
-            throw new  BadRequestException();
-        }
-        if (project.getProjectIdentifier().length() < 5 || project.getProjectIdentifier().length() > 7) {
-            throw new  BadRequestException();
-        }
-        if (project.getDescription() == "" || project.getDescription() == null) {
-            throw new  BadRequestException();
-        }
-        return repository.save(project);
-    }
+    public Project create(Project project) {return repository.save(project);}
 }

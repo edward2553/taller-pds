@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Getter
@@ -15,8 +16,9 @@ import java.util.List;
 @Table(name = "Backlog")
 public class Backlog extends EntityBase {
 
-    @Column(name = "project_identifier")
+    @NotEmpty(message = "El identificador del proyecto no debe estar vacio")
     @NotBlank(message = "El identificador del proyecto no debe estar en blanco")
+    @Column(name = "project_identifier")
     private String projectIdentifier;
 
     @JsonBackReference

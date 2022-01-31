@@ -20,9 +20,5 @@ public class BacklogServiceImp implements BacklogService{
     }
 
     @Override
-    public Backlog create(Backlog backlog) {
-        if (backlog.getProjectIdentifier() == "" || backlog.getProjectIdentifier() == null) {
-            throw new  BadRequestException();
-        }
-        return repository.save(backlog);}
+    public Backlog create(Backlog backlog) {return repository.save(backlog);}
 }
