@@ -1,19 +1,27 @@
 package com.taller.pds.tallerpds.controller;
 
 import com.taller.pds.tallerpds.entities.ProjectTask;
+import com.taller.pds.tallerpds.helper.Helpers;
+import com.taller.pds.tallerpds.helper.ResponseBuilder;
+import com.taller.pds.tallerpds.model.Response;
 import com.taller.pds.tallerpds.services.ProjectTaskService;
 import com.taller.pds.tallerpds.types.EStatusTypes;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/task")
+@RequiredArgsConstructor
 public class ProjectTaskController {
 
-    @Autowired
-    private ProjectTaskService service;
+    private final ProjectTaskService service;
+    private final ResponseBuilder builder;
+    private final Helpers helpers;
 
     @GetMapping
     public List<ProjectTask> findAll(){
@@ -40,8 +48,12 @@ public class ProjectTaskController {
     }
 
     @PostMapping
-    public ProjectTask create(@RequestBody ProjectTask projectTask) {
-        return service.create(projectTask);
+    public Response create(@Valid @RequestBody ProjectTask projectTask, BindingResult validationResult) {
+        if (validationResult.hasErrors()) {
+            return builder.failed(helpers.formatMessage(validationResult));
+        }
+        service.create(projectTask);
+        return builder.success(projectTask);
     }
 
 }

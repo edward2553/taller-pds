@@ -17,9 +17,7 @@ import java.util.Objects;
 public class EntityBase {
 
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotBlank(message = "El id no puede estar en blanco")
     private Long id;
 
     @Override
