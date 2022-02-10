@@ -3,15 +3,14 @@ package com.taller.pds.tallerpds.controller;
 import com.taller.pds.tallerpds.entities.Backlog;
 import com.taller.pds.tallerpds.helper.Helpers;
 import com.taller.pds.tallerpds.helper.ResponseBuilder;
-import com.taller.pds.tallerpds.model.Response;
 import com.taller.pds.tallerpds.services.BacklogService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/backlog")
@@ -23,15 +22,15 @@ public class BacklogController {
     private final Helpers helpers;
 
     @GetMapping
-    public List<Backlog> findAll() { return service.findAll(); }
+    public ResponseEntity findAll() { return new ResponseEntity<>(service.findAll(), HttpStatus.OK); }
 
     @PostMapping
-    public Response create(@Valid @RequestBody Backlog backlog, BindingResult validationResult){
+    public ResponseEntity create(@Valid @RequestBody Backlog backlog, BindingResult validationResult){
         if (validationResult.hasErrors()) {
-            return builder.failed(helpers.formatMessage(validationResult));
+            return new ResponseEntity<>(builder.failed(helpers.formatMessage(validationResult)), HttpStatus.BAD_REQUEST);
         }
         service.create(backlog);
-        return builder.success(backlog);
+        return new ResponseEntity<>(builder.success(backlog), HttpStatus.CREATED);
     }
 
 

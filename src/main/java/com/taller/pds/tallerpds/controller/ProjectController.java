@@ -7,6 +7,8 @@ import com.taller.pds.tallerpds.model.Response;
 import com.taller.pds.tallerpds.services.ProjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,17 +25,17 @@ public class ProjectController {
     private final Helpers helpers;
 
     @GetMapping
-    public List<Project> findAll(){
-        return service.findAll();
+    public ResponseEntity findAll(){
+        return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
     @PostMapping
-    public Response create(@Valid @RequestBody  Project project, BindingResult validationResult){
+    public ResponseEntity create(@Valid @RequestBody  Project project, BindingResult validationResult){
         if (validationResult.hasErrors()) {
-            return builder.failed(helpers.formatMessage(validationResult));
+            return new ResponseEntity(builder.failed(helpers.formatMessage(validationResult)), HttpStatus.BAD_REQUEST);
         }
         service.create(project);
-        return builder.success(project);
+        return new ResponseEntity<>(builder.success(project), HttpStatus.CREATED);
     }
 
 }

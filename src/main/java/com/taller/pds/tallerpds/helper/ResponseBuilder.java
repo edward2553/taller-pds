@@ -23,7 +23,7 @@ public class ResponseBuilder {
 
     public Response failed(Object data){
         return Response.builder()
-                .code(INTERNAL_SERVER_ERROR.value())
+                .code(BAD_REQUEST.value())
                 .data(data)
                 .build();
     }
