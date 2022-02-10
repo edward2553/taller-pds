@@ -1,5 +1,7 @@
 package com.taller.pds.tallerpds.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class index {
     @GetMapping
-    public String initialRoute(){
-        return "Initial Route";
+    public ResponseEntity initialRoute(){
+        return new ResponseEntity<>("Initial Route", HttpStatus.OK);
     }
 }

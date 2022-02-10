@@ -8,6 +8,8 @@ import com.taller.pds.tallerpds.services.ProjectTaskService;
 import com.taller.pds.tallerpds.types.EStatusTypes;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,8 +26,8 @@ public class ProjectTaskController {
     private final Helpers helpers;
 
     @GetMapping
-    public List<ProjectTask> findAll(){
-        return service.findAll();
+    public ResponseEntity findAll(){
+        return new ResponseEntity(service.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/project/{projectIdentifier}")
